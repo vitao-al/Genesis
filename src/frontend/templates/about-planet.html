@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title> Planeta</title>
-    <!-- O nome do arquivo CSS no link deve ser 'styles.css' se você estiver usando o último arquivo que corrigimos. -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/about-planet.css') }}">
 </head>
 <body>
@@ -21,20 +20,122 @@
     <a href="{{ url_for('homepage') }}" class="link-menu">Home</a>>
         </div>
         <div class="conteudo_content">
-             <!-- Conteúdo principal da página (planetas, etc.) -->
-            <div class="planet">
+             <div class="planet">
                 <img src="{{ url_for('static', filename='img/planets/' ~ planeta_changed.nome_planeta ~ '.png') }}" alt="{{ planeta_changed.nome_planeta }}">
             </div>
-            <div class="sobre">
+
+            <div class="sobre" id="sobre-conteudo" style="display: {{ 'none' if chat_messages else 'block' }}">
                 <p class="p-ia">
                     {{ resposta_ia|safe}}
                 </p>
             </div>
-            <div class="input-chat-ia">
-                <input placeholder="Pergunte algo sobre o planeta">
+
+            <div class="chat-ia-container" id="chat-ia-container"
+                 style="display: {{ 'flex' if chat_messages else 'none' }}">
+                <div class="chat-historico" id="chat-historico">
+                    <p class="ia-message">Olá! Sou a IA do planeta. Pergunte o que gostaria de saber!</p>
+
+                    {% for message in chat_messages %}
+                        <p class="{{ message.type }}-message">{{ message.text|safe }}</p>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+           <div class="input-chat-ia">
+                <form id="chat-form" method="POST">
+                    <div class="input-container">
+                        <input id="chat-input" name="pergunta_usuario" placeholder="Pergunte algo sobre o planeta">
+                        <button class="btn-enviar" type="button" onclick="enviarMensagem()"> <img src="{{ url_for('static', filename='img/enviar.png') }}">
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-
     </div>
+
+    <script>
+
+        const NOME_PLANETA = "{{ planeta_changed.nome_planeta }}";
+        const API_URL = "{{ url_for('chat_with_ia', nome_planeta=planeta_changed.nome_planeta) }}";
+
+        function adicionarMensagem(texto, tipo) {
+            const historico = document.getElementById('chat-historico');
+            const msg = document.createElement('p');
+            msg.classList.add(`${tipo}-message`);
+            // Nota: usamos innerHTML para renderizar as tags HTML (h1, p) da resposta da IA
+            msg.innerHTML = texto;
+            historico.appendChild(msg);
+            historico.scrollTop = historico.scrollHeight;
+        }
+
+        // Função JS para manipular a lógica do chat
+        async function enviarMensagem() {
+            const input = document.getElementById('chat-input');
+            const sobreDiv = document.getElementById('sobre-conteudo');
+            const chatDiv = document.getElementById('chat-ia-container');
+            const mensagem = input.value.trim();
+
+            if (mensagem === "") {
+                // Se o input estiver vazio: Volta para o conteúdo 'sobre'
+                sobreDiv.style.display = 'block';
+                chatDiv.style.display = 'none';
+                return;
+            }
+
+            // 1. Prepara a interface (mostra o chat e a mensagem do usuário)
+            sobreDiv.style.display = 'none';
+            chatDiv.style.display = 'flex'; // Torna o chat visível
+
+            adicionarMensagem(mensagem, 'user');
+
+            // Limpa o input
+            input.value = '';
+
+            // 2. Chama a API com AJAX (Fetch)
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pergunta: mensagem })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erro de rede ou servidor: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // 3. Adiciona a resposta da IA (data.resposta)
+                if (data.resposta) {
+                    adicionarMensagem(data.resposta, 'ia');
+                } else {
+                    adicionarMensagem("Desculpe, a IA não conseguiu gerar uma resposta.", 'ia');
+                }
+
+            } catch (error) {
+                console.error("Erro na comunicação com a IA:", error);
+                adicionarMensagem("Erro ao conectar com o serviço de IA.", 'ia');
+            }
+        }
+
+        // Inicialização: Garante o scroll ao carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            const historico = document.getElementById('chat-historico');
+            // Garante o scroll para o final do histórico ao carregar
+            if (historico) {
+                historico.scrollTop = historico.scrollHeight;
+            }
+        });
+
+        // Permite enviar mensagem com a tecla ENTER
+        document.getElementById('chat-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                enviarMensagem();
+            }
+        });
+
+    </script>
 </body>
 </html>

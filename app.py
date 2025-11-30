@@ -1,12 +1,12 @@
 import os
-from flask import Flask, render_template, send_from_directory, request
+from flask import Flask, render_template, send_from_directory, request, jsonify  # Importamos jsonify
 from src.dataset.data_handler import DataHandler
 from src.backend.AiIntegration import Ai
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-CAMINHO_TEMPLATES = os.path.join(basedir,'src','frontend','templates')
-CAMINHO_STATIC = os.path.join(basedir,'src','frontend','static')
-CSV_PATH = os.path.join(basedir,'dataset','PS_2025.02.03_05.09.36.csv')
+CAMINHO_TEMPLATES = os.path.join(basedir, 'src', 'frontend', 'templates')
+CAMINHO_STATIC = os.path.join(basedir, 'src', 'frontend', 'static')
+CSV_PATH = os.path.join(basedir, 'dataset', 'PS_2025.02.03_05.09.36.csv')
 
 app = Flask(__name__,
             template_folder=CAMINHO_TEMPLATES,
@@ -33,13 +33,16 @@ def homepage():
     for planeta in todos_planetas:
         categoria = planeta.categoria_habitabilidade()
         if categoria in dashboard:
-            #Da pra aumentar o limite se quiser mostrar mais de um card por categoria, talvez seja bom fazer isso depois
+            # Da pra aumentar o limite se quiser mostrar mais de um card por categoria, talvez seja bom fazer isso depois
             if len(dashboard[categoria]) < 4:
                 dashboard[categoria].append(planeta)
 
     return render_template("homepage.html", dashboard=dashboard)
 
+
 dashboard = {}
+
+
 @app.route("/planetas")
 def planetas():
     todos_planetas = data_handler.get_planets()
@@ -63,11 +66,11 @@ def teste():
     return render_template("index.html")
 
 
-
 DOWNLOAD_DIRECTORY = os.path.abspath('dataset')
+
+
 @app.route('/planetas/download/<filename>')
 def download_dataset(filename):
-
     try:
         return send_from_directory(
             DOWNLOAD_DIRECTORY,
@@ -78,14 +81,65 @@ def download_dataset(filename):
 
         return "Arquivo não encontrado", 404
 
+
+# app.py
+
 @app.route('/planetas/aboutmore/<nome_planeta>')
 def aboutmore(nome_planeta):
-
     ia = Ai()
+    # Note que a IA original está sendo renderizada aqui.
     resposta_ia = ia.PerguntarChat(nome_planeta)
 
     planeta_changed = data_handler.get_planet_por_nome(nome_planeta)
-    return render_template("about-planet.html", planeta_changed=planeta_changed, resposta_ia=resposta_ia)
+
+    # IMPORTANTE: Você precisa USAR SESSÕES para manter o histórico de chat
+    # Se você não usar 'session' (importar 'session' do flask), o chat será limpo a cada refresh.
+    # Por enquanto, o chat só funciona no frontend com o AJAX, mas se você quiser
+    # que o histórico persista após um refresh, a lógica abaixo é necessária:
+    # from flask import Flask, session, ...
+    # app.config['SECRET_KEY'] = 'uma-chave-secreta' # Chave é necessária para sessões
+
+    # Por enquanto, o código abaixo deve continuar enviando um chat vazio:
+    chat_messages = []
+
+    return render_template("about-planet.html", planeta_changed=planeta_changed, resposta_ia=resposta_ia, ia=ia,
+                           nome_planeta=nome_planeta, chat_messages=chat_messages)
+
+
+# =========================================================================
+# 💡 NOVA ROTA DE API PARA O CHAT (Retorna JSON)
+# =========================================================================
+@app.route('/api/chat/<nome_planeta>', methods=['POST'])
+def chat_with_ia(nome_planeta):
+    # 1. Obter a pergunta do corpo da requisição JSON
+    data = request.get_json()
+    pergunta_usuario = data.get('pergunta', '').strip()
+
+    if not pergunta_usuario:
+        # Se a requisição veio vazia, retorna um erro
+        return jsonify({"error": "Nenhuma pergunta fornecida."}), 400
+
+    # 2. Obter o planeta para fornecer contexto à IA
+    planeta_changed = data_handler.get_planet_por_nome(nome_planeta)
+    if not planeta_changed:
+        return jsonify({"error": "Planeta não encontrado."}), 404
+
+    # 3. Chamar a função da IA (Assumindo que Ai.PerguntarSobrePlaneta está disponível)
+    try:
+        ia = Ai()  # Instanciar a classe de IA
+
+        # Chamada real à IA
+        resposta_ia = ia.PerguntarSobrePlaneta(planeta_changed.nome_planeta, pergunta_usuario)
+
+        # 4. Retorna a resposta da IA em formato JSON
+        return jsonify({"resposta": resposta_ia})
+    except Exception as e:
+        # Tratar falhas da IA
+        print(f"Erro ao processar a pergunta da IA: {e}")
+        return jsonify({"error": "Erro interno ao processar a requisição da IA."}), 500
+
+
+# =========================================================================
 
 
 @app.route("/comparar")
@@ -101,9 +155,13 @@ def comparar():
                 planetas_selecionados.append(planeta)
 
     return render_template("comparar.html", planetas=planetas_selecionados)
+
+
 @app.route("/espaco")
 def espaco():
     todos_planetas = data_handler.get_planets()
-    return render_template("lista-exoplanetas.html",lista_planetas=todos_planetas)
+    return render_template("lista-exoplanetas.html", lista_planetas=todos_planetas)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
