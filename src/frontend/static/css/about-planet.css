@@ -155,8 +155,8 @@ body {
 
 /* ⌨️ Estilo do Campo INPUT (Com correção de largura) */
 .input-chat-ia input{
-    flex: 1 1 0%; /* ✅ Garante que o input ocupe todo o espaço restante */
-    min-width: 0; /* ✅ Permite que o input se ajuste */
+    flex: 1 1 0%;
+    min-width: 0;
     padding: 10px 20px;
     border: none;
     background-color: transparent;
