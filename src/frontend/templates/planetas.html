@@ -8,10 +8,12 @@
       content="Explore o universo e descubra exoplanetas já descobertos e a probabilidade de vida neles."
     />
     <title>Genesis - Explore o Universo</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/planetas.css') }}" />
-      <script src="{{ url_for('static', filename='js/carrossel.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/downloadButtom.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/painelComparar.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/carrossel.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/downloadButtom.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/painelComparar.js') }}"></script>
   </head>
   <body>
     <main>
@@ -21,7 +23,7 @@
       <nav class="navbar" aria-label="Navegação principal">
         <a href="#projeto" class="text-wrapper-2">Projeto</a>
         <a href="{{ url_for('planetas') }}">Planetas</a>
-        <a href="{{ url_for('espaco') }}" class="text-wrapper-2">Espaço</a>
+        <a href="#espaco" class="text-wrapper-2">Espaço</a>
         <a href="{{ url_for('homepage') }}">Home</a>
       </nav>
 
@@ -30,27 +32,27 @@
                 {% for categoria, lista_planetas in dashboard.items() %}
                      {% for p in lista_planetas %}
                         <div class="planet-slide" data-index="{{ loop.index0 }}">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox"
-                                       class="planet-selector"
-                                       value="{{ p.nome_planeta }}">
-                            </div>
 
                             <img class="planet" src="{{ url_for('static', filename='img/planets/' ~ p.nome_planeta ~ '.png') }}" alt="{{ p.nome_planeta }}">
+
                             <div class="painel-planet">
                                 <p class="label_planet">
                                     O que deseja fazer?
                                 </p>
-                                <button class="btn_compare">
+
+                                <button class="btn_compare"
+                                        id="btn-compare-{{ p.nome_planeta }}"
+                                        data-planet="{{ p.nome_planeta }}"
+                                        onclick="toggleComparacao('{{ p.nome_planeta }}')">
                                     <img class="icon_mini" src="{{ url_for('static', filename='img/Compare.png') }}">
-                                    <p>Adicionar à comparação</p>
+                                    <p><span class="btn-text">Adicionar à comparação</span></p>
                                 </button>
+
                                 <button class="btn_sabermais">
                                     <img class="icon_mini" src="{{ url_for('static', filename='img/Info.png') }}">
-                                    <a href="{{ url_for('aboutmore',nome_planeta=p.nome_planeta) }}">
-                                        <p>Saber mais sobre {{p.nome_planeta}}</p>
+                                    <a href="{{ url_for('aboutmore', nome_planeta=p.nome_planeta) }}">
+                                        <p>Saber mais sobre {{ p.nome_planeta }}</p>
                                     </a>
-
                                 </button>
 
                             </div>
