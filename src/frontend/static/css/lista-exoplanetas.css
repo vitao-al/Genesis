@@ -110,7 +110,7 @@ body {
 /* SEÇÃO DE CONTEÚDO (ACORDEÃO CONTAINER) */
 .exoplanets-section {
     position: absolute;
-    top: 25%;
+    top: 17%;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
