@@ -1,3 +1,4 @@
+
 :root {
 
     --color_text--: white;
@@ -122,9 +123,8 @@ body {
 .sobre::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 4px; }
 .sobre::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.5); }
 
----
 /* ======================================================= */
-/* 🤖 Seção Input Chat IA (Com correção de largura/altura) */
+/* 🤖 Seção Input Chat IA (Centralizado e Row) */
 /* ======================================================= */
 
 .input-chat-ia{
@@ -136,37 +136,37 @@ body {
     grid-area: input-ia;
     height: 100%;
     width: 100%;
+    /* background-color: red; (Remova a cor de teste) */
 }
 
-/* 🎯 Container Interno do Input (Com correção de altura) */
+/* 🎯 Adicionamos um contêiner interno invisível para limitar a largura do chat */
 .input-chat-ia .input-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%;
-    /* CORRIGIDO: Removido o height: 40%; e adicionado min-height */
-    min-height: 55px;
-    max-width: 800px;
+    height: 40%;/* Ocupa 100% do .input-chat-ia */
+    max-width: 800px; /* Limita a largura máxima do chat centralizado */
     padding: 8px;
-    background-color: #2E2E2E;
+    background-color: #2E2E2E; /* Cor de superfície do Gemini */
     border-radius: 25px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-/* ⌨️ Estilo do Campo INPUT (Com correção de largura) */
+/* ⌨️ Estilo do Campo INPUT (Elemento filho) */
 .input-chat-ia input{
-    flex: 1 1 0%;
-    min-width: 0;
+    flex: 1;
     padding: 10px 20px;
     border: none;
-    background-color: transparent;
+    background-color: transparent; /* Fundo transparente para usar o background do contêiner */
     color: white;
     font-size: 16px;
     outline: none;
-    margin-right: 10px;
+    margin-right: 10px; /* Espaço entre o input e o botão */
+    /* background-color: violet; (Remova a cor de teste) */
 }
 
-/* Exemplo de Estilo do Botão */
+/* Exemplo de Estilo do Botão (Assumindo que está dentro do .input-container) */
 .btn-enviar {
     width: 45px;
     height: 45px;
@@ -185,18 +185,14 @@ body {
     height: 30px;
 }
 
----
-/* ======================================================= */
-/* 🪐 Seção Planeta (Com correção de centralização) */
-/* ======================================================= */
 
 .planet {
     grid-area: planeta;
-    width: 100%; /* ✅ CORRIGIDO: Ocupa 100% da largura da coluna do grid */
+    width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center; /* Centraliza a imagem horizontalmente */
-    align-items: center;    /* Centraliza a imagem verticalmente */
+    justify-content: center;
+    align-items: center;
 
     background: none;
     border: none;
@@ -218,62 +214,6 @@ body {
     100% { transform: translateY(0px); }
 }
 
----
-/* ======================================================= */
-/* 💬 Novo Container do Chat IA */
-/* ======================================================= */
-.chat-ia-container {
-    /* Ocupa a mesma área do grid que o 'sobre' */
-    grid-area: sobre;
-
-    /* Configuração Flexbox para empilhar o histórico verticalmente */
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-    height: 100%;
-    padding-right: 20px;
-    margin: 0;
-
-    /* Mantém o histórico rolável */
-    overflow: hidden;
-}
-
-/* Área de Histórico da Conversa */
-.chat-historico {
-    flex: 1;
-    overflow-y: auto;
-    padding-right: 10px;
-    margin-bottom: 10px;
-}
-
-/* Mensagens (Para ter o estilo Gemini) */
-.ia-message, .user-message {
-    padding: 10px 15px;
-    border-radius: 18px;
-    max-width: 85%;
-    margin-bottom: 12px;
-    word-wrap: break-word;
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--color-text);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.ia-message {
-    background-color: #404F78; /* Cor IA */
-    margin-right: auto;
-    border-top-left-radius: 6px;
-}
-
-.user-message {
-    background-color: #3A3A3A; /* Cor Usuário */
-    margin-left: auto;
-    text-align: left;
-    border-bottom-right-radius: 6px;
-}
-
-/* --- ESTILOS DE TEXTO E NAVBAR (Não alterados) --- */
 
 .text-wrapper-2,
 .text-wrapper-3,
@@ -281,11 +221,13 @@ body {
 .sobre h2,
 .sobre p,
 .p-ia {
+
     color: white;
     text-shadow: 0 2px 5px rgba(0,0,0,0.8);
 }
 
 .navbar_content a {
+
     color: white;
     text-transform: uppercase;
     font-weight: bold;
@@ -372,8 +314,6 @@ body {
     transform: scale(1.2);
 }
 
-/* --- MEDIA QUERIES (Não alterados) --- */
-
 @media (max-width: 768px) {
     body {
 
@@ -453,4 +393,60 @@ body {
     .caixa_pergunta p {
         color: white;
     }
+}
+/* ======================================================= */
+/* 💬 Novo Container do Chat IA */
+/* ======================================================= */
+.chat-ia-container {
+    /* Ocupa a mesma área do grid que o 'sobre' */
+    grid-area: sobre;
+
+    /* Configuração Flexbox para empilhar o histórico verticalmente */
+    display: flex; /* Alternado entre 'flex' e 'none' pelo JS */
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+    padding-right: 20px;
+    margin: 0;
+
+    /* Mantém o histórico rolável */
+    overflow: hidden;
+}
+
+/* Área de Histórico da Conversa */
+.chat-historico {
+    flex: 1; /* Ocupa a maior parte do espaço vertical */
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 10px;
+
+    /* Copie e cole os estilos de scrollbar aqui também */
+    /* Ex: .chat-historico::-webkit-scrollbar { width: 8px; } */
+}
+
+/* Mensagens (Para ter o estilo Gemini) */
+.ia-message, .user-message {
+    padding: 10px 15px;
+    border-radius: 18px;
+    max-width: 85%;
+    margin-bottom: 12px;
+    word-wrap: break-word;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--color-text);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.ia-message {
+    background-color: #404F78; /* Cor IA */
+    margin-right: auto;
+    border-top-left-radius: 6px;
+}
+
+.user-message {
+    background-color: #3A3A3A; /* Cor Usuário */
+    margin-left: auto;
+    text-align: left;
+    border-bottom-right-radius: 6px;
 }
