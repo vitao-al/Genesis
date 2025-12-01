@@ -2,10 +2,10 @@
 ![img.png](img.png)
 
 
-Um projeto feito em python para a diciplina de programação que visa mostrar os exoplanetas com mais provabilidade de vida com base em um dataset obtido pela waggle.
+Um projeto feito em python para a diciplina de programação que visa mostrar os exoplanetas com mais provabilidade de vida, com base em um dataset obtido pela waggle.
 # Objetivo
-  O projeto genesis é uma aplicação que ultiliza o dataset PS_2025.02.03_05.09.36.csv disponibilizado pelo site [kaggle](https://www.kaggle.com/) 
-  Que contem uma lista de mais de 5000 Exoplanetas descobertos por meio do uso de telescopios. E com base no dataset, o projeto genesis analiza e compara 
+  O projeto genesis é uma aplicação que ultiliza o dataset PS_2025.02.03_05.09.36.csv, disponibilizado pelo site [kaggle](https://www.kaggle.com/) 
+  Que contem uma lista de mais de 5000 Exoplanetas, descobertos por meio do uso de telescopios. E com base no dataset, o projeto genesis analiza e compara 
   todos os Exoplanetas obtidos no dataset, e calcula com base nas funções gaussianas absoluta e proporcional, usando a terra como parametro, a provabilidade de vida 
   e demonstrando quais Exoplanetas são os mais provaveis. Ademais, é possivel no App Genesis obter informações especificas sobre os exoplanetas, como raio, temperatura
   massa, quantidade de estrelas, etc...
