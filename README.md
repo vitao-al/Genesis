@@ -60,4 +60,4 @@ https://github.com/user-attachments/assets/7d072bab-b1fb-45a4-9f8d-bad2f45dca6b
   * victor manuel
   * Handrey luciano
 # OBS:
-para mais informações sobre a estrutura do projeto consulte o arquivo /docs/DOCS.md
+para mais informações sobre a estrutura do projeto consulte o arquivo ```/docs/DOCS.md```
