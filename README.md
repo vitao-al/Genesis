@@ -59,3 +59,5 @@ https://github.com/user-attachments/assets/7d072bab-b1fb-45a4-9f8d-bad2f45dca6b
   * leonardo Rd
   * victor manuel
   * Handrey luciano
+# obs
+para mais informações sobre a estrutura do projeto consulte o arquivo /docs/DOCS.md
