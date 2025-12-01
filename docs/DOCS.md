@@ -3,34 +3,33 @@
 ## Estrutura atual do projeto:
 ```
 .
-├── app.py
+├── app.py - classe principal que roda o flask
 ├── dataset
-│   └── PS_2025.02.03_05.09.36.csv
+│   └── PS_2025.02.03_05.09.36.csv - Dataset do site kaggle
 ├── docs
-│   └── DOCS.md
+│   └── DOCS.md - Documentação do projeto
 ├── Genesis
-├── LICENSE
-├── README.md
-├── requirements.txt
-├── setup.py
+├── LICENSE - Arquivo de licensa
+├── README.md - README.md
+├── requirements.txt - bibliotecas usadas
+├── setup.py - arquivo para setup
 └── src
     ├── backend
-    │   ├── AiIntegration.py
-    │   ├── Charts.py
+    │   ├── AiIntegration.py - arquivo que contem a classe Ai responsavel por integrar as funcionalidades da ia no projeto 
     │   ├── __init__.py
     │   └── __pycache__
     ├── const
-    │   ├── genesis_consts.py
+    │   ├── genesis_consts.py - arquivo que contem as classes das constantes ultilzadas no projeto como os valores de referencia da terra usados no calculo da provabilidade de via
     │   ├── __init__.py
     │   └── __pycache__
     ├── dataset
-    │   ├── data_handler.py
+    │   ├── data_handler.py - arquivo que contem a classe data_handler que é responsavel por lidar com o dataset e instanciar os objetos da classe Exoplaneta
     │   ├── __init__.py
     │   └── __pycache__
     ├── frontend
     │   ├── __init__.py
     │   ├── static
-    │   │   ├── css
+    │   │   ├── css - estilização das paginas html
     │   │   │   ├── about-planet.css
     │   │   │   ├── comparar.css
     │   │   │   ├── globals.css
@@ -38,7 +37,7 @@
     │   │   │   ├── lista-exoplanetas.css
     │   │   │   ├── planetas.css
     │   │   │   └── style.css
-    │   │   ├── img
+    │   │   ├── img - os arquivos de imagem
     │   │   │   ├── background.png
     │   │   │   ├── Compare.png
     │   │   │   ├── download.png
@@ -48,7 +47,7 @@
     │   │   │   ├── Moon.png
     │   │   │   ├── planetaTerra.gif
     │   │   │   ├── planetaTerra.png
-    │   │   │   ├── planets
+    │   │   │   ├── planets - as imagems dos planetas
     │   │   │   │   ├── Kepler-1410 b.png
     │   │   │   │   ├── Kepler-395 c.png
     │   │   │   │   ├── Kepler-452 b.png
@@ -65,27 +64,28 @@
     │   │   │   ├── rigth.png
     │   │   │   ├── Sun.png
     │   │   │   └── world.svg
-    │   │   └── js
+    │   │   └── js - os scripts em javascript usados na criação das paginas html 
     │   │       ├── btn_theme.js
     │   │       ├── carrossel.js
     │   │       ├── comparar.js
     │   │       ├── downloadButtom.js
     │   │       └── painelComparar.js
-    │   └── templates
+    │   └── templates - templates html com a ultilização do jinja para integrar html + css + javascript + python
     │       ├── about-planet.html
     │       ├── comparar.html
     │       ├── homepage.html
     │       ├── index.html
     │       ├── lista-exoplanetas.html
     │       └── planetas.html
-    └── models
-        ├── Exoplaneta.py
+    └── models - pasta que contem o modelo Exoplaneta
+        ├── Exoplaneta.py - classe responsavel construir por meio dos dados do dataset objetos Exoplaneta,que contem os metodos dos calculos da provabilidade de vida e outros atributos  
         ├── __init__.py
         └── __pycache__
 
 21 directories, 59 files
 ```
 
-## Classes:
+## Classes principais:
 * Exoplaneta: classe de dados que possibilita calcular a provabilidade de vida baseado em distribuição normal e função gaussiana
-* 
+* Data_handler: classe responsavel por lidar com o dataset
+* AiIntegration: classe responsavel por conversar com a api do groq e gerar as respostas com ia
