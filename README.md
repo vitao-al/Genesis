@@ -20,15 +20,25 @@ Um projeto feito em python para a diciplina de programação que visa mostrar os
     
 # Instalação
   1 - Baixe ou clone o repositorio do github
+  
   2 - Verifique se seu computador tem python e o pip instalado
+  
   3 - Extraia o projeto(caso tenha baixado em .zip) e abra na raiz do projeto
+  
   4 - na pasta principal procure o arquivo requirements.txt 
+  
   5 - abra o cmd, powershell, ou terminal na pasta onde se encontra o requirements.txt
+  
   6 - rode o comando ```pip install -r requirements.txt```
+  
   7 - crie um arquvio na mesma pasta onde o requirements.txt se localiza e o nomeie como ".env"
+  
   8 - crie uma conta no site [groq](https://console.groq.com/home) e gere uma chave api na aba API KEYS
+  
   9 - copie sua chave api e cole a seguinte linha dentro do arquivo ".env":GENESIS_AI_API_KEY=sua_chave_api(cole a chave sem aspas)
+  
   10 - Tudo pronto! rode o arquivo app.py com o comando ```python app.py``` ou ```python3 app.py```
+  
   
 # tecnologias usadas:
 * flask
@@ -42,6 +52,6 @@ Um projeto feito em python para a diciplina de programação que visa mostrar os
   
 # integrantes:
   * andre lucas
-  * leo
+  * leonardo Rd
   * victor manuel
   * Handrey luciano
