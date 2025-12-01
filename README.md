@@ -11,6 +11,10 @@ Um projeto feito em python para a diciplina de programação que visa mostrar os
   massa, quantidade de estrelas, etc...
   alem da integração com ia, que permite que o usuario possa fazer perguntas mais especificas sobre cada Exoplaneta!
   
+
+https://github.com/user-attachments/assets/7d072bab-b1fb-45a4-9f8d-bad2f45dca6b
+
+
 # Funcionalidades
   * Visualização de todos os Exoplanetas dentro do dataset
   * Visualização dos dados dos Exoplanetas mais provaveis de ter vida
