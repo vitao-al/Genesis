@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, send_from_directory, request, jsonify  # Importamos jsonify
-from src.dataset.data_handler import DataHandler
-from src.backend.AiIntegration import Ai
+from ..src.dataset.data_handler import DataHandler
+from ..src.backend.AiIntegration import Ai
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 CAMINHO_TEMPLATES = os.path.join(basedir, 'src', 'frontend', 'templates')
