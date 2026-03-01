@@ -1,12 +1,12 @@
 import os
 from flask import Flask, render_template, send_from_directory, request, jsonify  # Importamos jsonify
-from ..src.dataset.data_handler import DataHandler
-from ..src.backend.AiIntegration import Ai
+from src.dataset.data_handler import DataHandler
+from src.backend.AiIntegration import Ai
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-CAMINHO_TEMPLATES = os.path.join(basedir, 'src', 'frontend', 'templates')
-CAMINHO_STATIC = os.path.join(basedir, 'src', 'frontend', 'static')
-CSV_PATH = os.path.join(basedir, 'dataset', 'PS_2025.02.03_05.09.36.csv')
+CAMINHO_TEMPLATES = os.path.join(basedir, '../src', 'frontend', 'templates')
+CAMINHO_STATIC = os.path.join(basedir, '../src', 'frontend', 'static')
+CSV_PATH = os.path.join(basedir, '../dataset', 'PS_2025.02.03_05.09.36.csv')
 
 app = Flask(__name__,
             template_folder=CAMINHO_TEMPLATES,
@@ -66,7 +66,7 @@ def teste():
     return render_template("index.html")
 
 
-DOWNLOAD_DIRECTORY = os.path.abspath('dataset')
+DOWNLOAD_DIRECTORY = os.path.abspath('../dataset')
 
 
 @app.route('/planetas/download/<filename>')
