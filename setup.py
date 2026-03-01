@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name='Genesis',
@@ -9,5 +9,4 @@ setup(
     author='handrey',
     author_email='',
     description='',
-    packages=find_packages(),
 )
