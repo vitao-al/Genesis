@@ -18,6 +18,18 @@ app = Flask(__name__,
 data_handler = DataHandler()
 data_handler.load_planets_from_csv(CSV_PATH)
 
+@app.route("/debug")
+def debug():
+    import os
+    info = {
+        "basedir": basedir,
+        "template_folder": app.template_folder,
+        "template_folder_exists": os.path.exists(app.template_folder),
+        "files_in_template_folder": os.listdir(app.template_folder) if os.path.exists(app.template_folder) else "PASTA NÃO EXISTE",
+        "cwd": os.getcwd(),
+        "listdir_root": os.listdir("/var/task")
+    }
+    return jsonify(info)
 
 @app.route("/")
 def homepage():
