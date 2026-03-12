@@ -14,6 +14,8 @@ CSV_PATH          = os.path.join(basedir, 'dataset', 'PS_2025.02.03_05.09.36.csv
 app = flask.Flask(__name__,
             template_folder=CAMINHO_TEMPLATES,
             static_folder=CAMINHO_STATIC)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
 data_handler = DataHandler()
 try:
@@ -179,7 +181,3 @@ def comparar():
 def espaco():
     todos_planetas = data_handler.get_planets()
     return flask.render_template("lista-exoplanetas.html", lista_planetas=todos_planetas)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
