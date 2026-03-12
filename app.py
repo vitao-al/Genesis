@@ -16,7 +16,10 @@ app = flask.Flask(__name__,
             static_folder=CAMINHO_STATIC)
 
 data_handler = DataHandler()
-data_handler.load_planets_from_csv(CSV_PATH)
+try:
+    data_handler.load_planets_from_csv(CSV_PATH)
+except Exception as e:
+    print(f"Erro ao carregar CSV: {e}")
 
 @app.route("/debug")
 def debug():
