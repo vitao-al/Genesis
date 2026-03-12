@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, send_from_directory, request, jsonify
+import flask
 from src.dataset.data_handler import DataHandler
 from src.backend.AiIntegration import Ai
 
@@ -11,7 +11,7 @@ CAMINHO_TEMPLATES = os.path.join(basedir, 'src', 'frontend', 'templates')
 CAMINHO_STATIC    = os.path.join(basedir, 'src', 'frontend', 'static')
 CSV_PATH          = os.path.join(basedir, 'dataset', 'PS_2025.02.03_05.09.36.csv')
 
-app = Flask(__name__,
+app = flask.Flask(__name__,
             template_folder=CAMINHO_TEMPLATES,
             static_folder=CAMINHO_STATIC)
 
@@ -29,7 +29,7 @@ def debug():
         "cwd": os.getcwd(),
         "listdir_root": os.listdir("/var/task")
     }
-    return jsonify(info)
+    return flask.jsonify(info)
 
 @app.route("/")
 def homepage():
@@ -52,7 +52,7 @@ def homepage():
             if len(dashboard[categoria]) < 4:
                 dashboard[categoria].append(planeta)
 
-    return render_template("homepage.html", dashboard=dashboard)
+    return flask.render_template("homepage.html", dashboard=dashboard)
 
 
 dashboard = {}
@@ -73,12 +73,12 @@ def planetas():
         categoria = planeta.categoria_habitabilidade()
         if categoria in dashboard and len(dashboard[categoria]) < 4:
             dashboard[categoria].append(planeta)
-    return render_template("planetas.html", dashboard=dashboard)
+    return flask.render_template("planetas.html", dashboard=dashboard)
 
 
 @app.route("/teste")
 def teste():
-    return render_template("index.html")
+    return flask.render_template("index.html")
 
 
 DOWNLOAD_DIRECTORY = os.path.join(basedir, 'dataset')
@@ -87,7 +87,7 @@ DOWNLOAD_DIRECTORY = os.path.join(basedir, 'dataset')
 @app.route('/planetas/download/<filename>')
 def download_dataset(filename):
     try:
-        return send_from_directory(
+        return flask.send_from_directory(
             DOWNLOAD_DIRECTORY,
             filename,
             as_attachment=True
@@ -117,7 +117,7 @@ def aboutmore(nome_planeta):
     # Por enquanto, o código abaixo deve continuar enviando um chat vazio:
     chat_messages = []
 
-    return render_template("about-planet.html", planeta_changed=planeta_changed, resposta_ia=resposta_ia, ia=ia,
+    return flask.render_template("about-planet.html", planeta_changed=planeta_changed, resposta_ia=resposta_ia, ia=ia,
                            nome_planeta=nome_planeta, chat_messages=chat_messages)
 
 
@@ -127,17 +127,17 @@ def aboutmore(nome_planeta):
 @app.route('/api/chat/<nome_planeta>', methods=['POST'])
 def chat_with_ia(nome_planeta):
     # 1. Obter a pergunta do corpo da requisição JSON
-    data = request.get_json()
+    data = flask.request.get_json()
     pergunta_usuario = data.get('pergunta', '').strip()
 
     if not pergunta_usuario:
         # Se a requisição veio vazia, retorna um erro
-        return jsonify({"error": "Nenhuma pergunta fornecida."}), 400
+        return flask.jsonify({"error": "Nenhuma pergunta fornecida."}), 400
 
     # 2. Obter o planeta para fornecer contexto à IA
     planeta_changed = data_handler.get_planet_por_nome(nome_planeta)
     if not planeta_changed:
-        return jsonify({"error": "Planeta não encontrado."}), 404
+        return flask.jsonify({"error": "Planeta não encontrado."}), 404
 
     # 3. Chamar a função da IA (Assumindo que Ai.PerguntarSobrePlaneta está disponível)
     try:
@@ -147,11 +147,11 @@ def chat_with_ia(nome_planeta):
         resposta_ia = ia.PerguntarSobrePlaneta(planeta_changed.nome_planeta, pergunta_usuario)
 
         # 4. Retorna a resposta da IA em formato JSON
-        return jsonify({"resposta": resposta_ia})
+        return flask.jsonify({"resposta": resposta_ia})
     except Exception as e:
         # Tratar falhas da IA
         print(f"Erro ao processar a pergunta da IA: {e}")
-        return jsonify({"error": "Erro interno ao processar a requisição da IA."}), 500
+        return flask.jsonify({"error": "Erro interno ao processar a requisição da IA."}), 500
 
 
 # =========================================================================
@@ -159,7 +159,7 @@ def chat_with_ia(nome_planeta):
 
 @app.route("/comparar")
 def comparar():
-    planetas_str = request.args.get('planetas')
+    planetas_str = flask.request.args.get('planetas')
 
     planetas_selecionados = []
     if planetas_str:
@@ -169,13 +169,13 @@ def comparar():
             if planeta:
                 planetas_selecionados.append(planeta)
 
-    return render_template("comparar.html", planetas=planetas_selecionados)
+    return flask.render_template("comparar.html", planetas=planetas_selecionados)
 
 
 @app.route("/espaco")
 def espaco():
     todos_planetas = data_handler.get_planets()
-    return render_template("lista-exoplanetas.html", lista_planetas=todos_planetas)
+    return flask.render_template("lista-exoplanetas.html", lista_planetas=todos_planetas)
 
 
 if __name__ == "__main__":
