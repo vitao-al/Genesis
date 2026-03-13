@@ -50,6 +50,7 @@
                         {% set p = lista_planetas[0] %}
 
                         <div class="planet-card">
+                            <a class="planet" src="{{ url_for('static', filename='img/planets/' ~ p.nome_planeta ~ '.png') }}" alt="{{ p.nome_planeta }}">
                             <div style="font-size: 12px; text-transform: uppercase; color: #aaa; margin-bottom: 5px;">{{ categoria }}</div>
                             <div class="card-name">{{ p.nome_planeta }}</div>
 
@@ -61,6 +62,7 @@
                                 <span>Raio: {{ p.raio_planeta }} R⊕</span>
                                 <span>Ano: {{ p.ano_descoberta }}</span>
                             </div>
+                            </a>
                         </div>
                     {% endif %}
                 {% endfor %}
