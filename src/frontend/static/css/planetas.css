@@ -262,7 +262,6 @@ body {
     display: none;
     width: 100%;
     justify-content: center;
-    padding: 0 20px 20px;
     box-sizing: border-box;
 }
 
@@ -495,7 +494,7 @@ body {
 
     .cards-container {
         flex-direction: column;
-        width: 92%;
+        width: 100%;
         gap: 10px;
         padding-bottom: 80px;
         flex-wrap: nowrap;
@@ -517,11 +516,11 @@ body {
 @media screen and (max-width: 480px) {
     .genesis-logo { width: 110px; height: 48px; }
     .text-wrapper-2, .text-wrapper-3, .navbar a { font-size: 10px; }
-    .carousel-visuals-wrapper { height: 200px; margin-top: 80px; }
+    .carousel-visuals-wrapper { height: 350px; margin-top: 80px; }
     .planet-slide { margin: 0 12px; }
     .nav-button img { width: 26px; height: 26px; }
     .icon_mini { width: 22px; height: 22px; }
     .data-label { font-size: 0.65em; }
     .data-value { font-size: 0.8em; }
-    .cards-container { width: 95%; }
+    .cards-container { width: 100%; }
 }
