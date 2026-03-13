@@ -350,32 +350,58 @@ body {
         height: 56px;
     }
 
+    /* Navbar igual ao comparar — barra fixa no rodapé */
     .frame .header {
-        top: 75px;
-        width: 95%;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        transform: none;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding: 10px 0;
+        z-index: 1000;
     }
 
-    .frame .header-nav { gap: 15px; }
-    .frame .div { font-size: 16px; }
-    .frame .text-wrapper { font-size: 14px; }
+    .frame .header-nav {
+        gap: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .frame .div,
+    .frame .text-wrapper {
+        flex: 1;
+        text-align: center;
+        padding: 5px 2px;
+        letter-spacing: 0;
+    }
+
+    .frame .div { font-size: 11px; }
+    .frame .text-wrapper { font-size: 11px; }
 
     .frame .rectangle {
-        top: 150px;
+        top: 100px;
         width: 95%;
         border-radius: 20px;
         min-height: calc(100vh - 180px);
     }
 
     .frame .text-wrapper-2 {
-        top: 165px;
+        top: 115px;
         font-size: 18px;
     }
 
     .exoplanets-section {
-        top: 200px;
+        top: 150px;
         width: 90%;
-        height: calc(100vh - 250px);
+        height: calc(100vh - 230px);
         padding-top: 20px;
+        padding-bottom: 70px;
         position: absolute;
     }
 

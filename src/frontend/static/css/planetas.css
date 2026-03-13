@@ -10,6 +10,7 @@ main {
     position: relative;
     font-family: "Poppins", Helvetica;
     color: white;
+    min-height: 100vh;
 }
 
 body {
@@ -17,6 +18,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* ── LOGO ── */
@@ -24,8 +26,8 @@ body {
     position: absolute;
     top: 40px;
     left: 5%;
-    width: 211px;
-    height: 91px;
+    width: 180px;
+    height: 78px;
     background-image: url(https://c.animaapp.com/aPetIHpm/img/genesislogo--2--1@2x.png);
     background-size: contain;
     background-repeat: no-repeat;
@@ -41,10 +43,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.genesis-logo:hover {
-    transform: translateY(-3px);
-    transition: all 0.3s ease;
-}
+.genesis-logo:hover { transform: translateY(-3px); }
 
 /* ── NAVBAR ── */
 .navbar {
@@ -63,7 +62,7 @@ body {
 .navbar a {
     font-family: "Poppins", Helvetica, sans-serif;
     color: white;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -71,6 +70,8 @@ body {
     text-decoration: none;
     position: relative;
     transition: color 0.3s ease;
+    margin: 0;
+    background-color: transparent;
 }
 
 .text-wrapper-2::before,
@@ -84,29 +85,29 @@ body {
     height: 3px;
     background-color: white;
     transition: width 0.3s ease;
+    transform: none;
+    top: auto;
 }
 
 .text-wrapper-2:hover::before,
 .text-wrapper-3:hover::before,
-.navbar a:hover::before {
-    width: 100%;
-}
+.navbar a:hover::before { width: 100%; }
 
 /* ── CARROSSEL ── */
 .carousel-visuals-wrapper {
     width: 100%;
-    height: 270px;
+    height: 320px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30vh;
+    margin-top: 160px;
     overflow: hidden;
 }
 
 .carousel-visuals {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     position: absolute;
     left: 0;
     width: 100%;
@@ -142,7 +143,7 @@ body {
     position: absolute;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 12px;
     width: 100%;
     gap: 10px;
     background-color: rgba(0, 0, 0, 0.8);
@@ -159,6 +160,7 @@ body {
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    min-width: 180px;
 }
 
 .painel-planet.mostrar {
@@ -172,9 +174,9 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 0.9em;
+    font-size: 0.85em;
     opacity: 0.9;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .btn_compare,
@@ -183,7 +185,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
     color: white;
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -192,6 +194,9 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     transition: all 0.3s ease;
+    padding: 8px;
+    cursor: pointer;
+    width: 100%;
 }
 
 .btn_compare:hover,
@@ -206,23 +211,22 @@ body {
 .btn_sabermais a:visited {
     text-decoration: none;
     color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.btn_compare p { margin: 0; }
+.btn_compare p { margin: 0; font-size: 0.85em; }
+.btn_sabermais p { margin: 0; font-size: 0.85em; }
 
 .btn_compare.selecionado {
     background-color: rgba(220, 53, 69, 0.3);
     border-color: #dc3545;
 }
 
-.btn_compare.selecionado:hover {
-    background-color: rgba(220, 53, 69, 0.5);
-}
+.btn_compare.selecionado:hover { background-color: rgba(220, 53, 69, 0.5); }
 
-.icon_mini {
-    width: 36px;
-    height: 36px;
-}
+.icon_mini { width: 28px; height: 28px; flex-shrink: 0; }
 
 /* ── BOTÕES NAV ── */
 .nav-button {
@@ -245,32 +249,33 @@ body {
 .prev-button { left: calc(50% - 240px); }
 .next-button { right: calc(50% - 240px); }
 
-.nav-button:hover {
-    transform: translateY(-50%) scale(1.2);
-}
+.nav-button:hover { transform: translateY(-50%) scale(1.2); }
 
 /* ── DATA CARDS ── */
 .carousel-data-container {
     width: 100%;
     position: relative;
+    margin-top: 60px;
 }
 
 .planeta-details {
     display: none;
     width: 100%;
-    height: 340px;
     justify-content: center;
+    padding: 0 20px 20px;
+    box-sizing: border-box;
 }
 
 .cards-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: stretch;
     width: 90%;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    gap: 20px;
+    gap: 16px;
     padding: 20px 0;
+    flex-wrap: nowrap;
 }
 
 .data-card {
@@ -282,10 +287,11 @@ body {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
     color: white;
     border-radius: 12px;
-    padding: 15px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+    min-width: 0;
 }
 
 .data-row {
@@ -294,13 +300,15 @@ body {
     padding: 8px 0;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
 }
+
+.data-row:last-child { border-bottom: none; }
 
 .data-label {
     color: #cccccc;
     font-weight: 300;
-    font-size: 0.8em;
+    font-size: 0.75em;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -309,7 +317,7 @@ body {
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     font-weight: 600;
-    font-size: 0.95em;
+    font-size: 0.9em;
 }
 
 /* ── DOWNLOAD ── */
@@ -330,15 +338,8 @@ body {
     transition: all 0.3s ease;
 }
 
-.botao_download:hover {
-    background-color: rgba(255,255,255,0.2);
-    transform: translateY(-3px);
-}
-
-.botao-download-icone {
-    width: 30px;
-    height: 30px;
-}
+.botao_download:hover { background-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
+.botao-download-icone { width: 30px; height: 30px; }
 
 .aviso-box {
     display: none;
@@ -355,17 +356,8 @@ body {
     color: white;
 }
 
-.aviso-box p {
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 14px;
-}
-
-.aviso-botoes-container {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
+.aviso-box p { margin-top: 0; margin-bottom: 10px; font-size: 14px; }
+.aviso-botoes-container { display: flex; justify-content: flex-end; gap: 10px; }
 
 .botao-sim, .botao-nao {
     background-color: transparent;
@@ -375,7 +367,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: 500;
-    transition: background-color 0.2s, transform 0.2s;
+    transition: background-color 0.2s;
 }
 
 .botao-sim { border-color: #28a745; }
@@ -404,7 +396,6 @@ body {
 }
 
 .compare-bar.active { bottom: 30px; }
-
 .compare-info { color: white; font-family: "Poppins", sans-serif; font-weight: 500; }
 .compare-info span { color: #00c3ff; font-weight: bold; font-size: 1.2rem; }
 
@@ -443,16 +434,18 @@ body {
 /* Tablet (max 1024px) */
 @media screen and (max-width: 1024px) {
     .navbar { gap: 25px; }
-    .text-wrapper-2, .text-wrapper-3, .navbar a { font-size: 16px; }
-    .genesis-logo { width: 160px; height: 70px; }
-    .prev-button { left: 20px; }
-    .next-button { right: 20px; }
-    .planet-slide { margin: 0 40px; }
-    .cards-container { width: 95%; gap: 12px; }
+    .text-wrapper-2, .text-wrapper-3, .navbar a { font-size: 15px; }
+    .genesis-logo { width: 150px; height: 65px; }
+    .prev-button { left: 15px; }
+    .next-button { right: 15px; }
+    .planet-slide { margin: 0 50px; }
+    .cards-container { gap: 12px; }
 }
 
 /* Mobile (max 768px) */
 @media screen and (max-width: 768px) {
+
+    /* Logo centralizado */
     .genesis-logo {
         width: 130px;
         height: 55px;
@@ -461,6 +454,7 @@ body {
         transform: translateX(-50%);
     }
 
+    /* Navbar igual ao comparar — barra fixa no rodapé */
     .navbar {
         position: fixed;
         bottom: 0;
@@ -485,48 +479,49 @@ body {
         letter-spacing: 0;
     }
 
+    /* Carrossel */
     .carousel-visuals-wrapper {
-        margin-top: 15vh;
-        height: 220px;
+        margin-top: 90px;
+        height: 260px;
     }
 
-    .planet-slide { margin: 0 20px; }
-
+    .planet-slide { margin: 0 25px; }
     .prev-button { left: 5px; }
     .next-button { right: 5px; }
+    .nav-button img { width: 32px; height: 32px; }
 
-    .nav-button img { width: 35px; height: 35px; }
-
-    .planeta-details { height: auto; }
+    /* Cards em coluna */
+    .carousel-data-container { margin-top: 30px; }
 
     .cards-container {
         flex-direction: column;
         width: 92%;
         gap: 10px;
-        padding-bottom: 70px;
+        padding-bottom: 80px;
+        flex-wrap: nowrap;
     }
 
     .data-card { width: 100%; }
+    .data-label { font-size: 0.7em; }
+    .data-value { font-size: 0.85em; }
 
-    .compare-bar {
-        padding: 12px 20px;
-        gap: 12px;
-        border-radius: 30px;
-        bottom: -100px;
-    }
-
+    /* Compare bar sobe mais para não sobrepor navbar */
     .compare-bar.active { bottom: 70px; }
+
+    /* Download */
+    .botao_download { bottom: 75px; right: 15px; width: 50px; height: 50px; }
+    .aviso-box { right: 15px; bottom: 135px; min-width: 200px; }
 }
 
 /* Mobile pequeno (max 480px) */
 @media screen and (max-width: 480px) {
     .genesis-logo { width: 110px; height: 48px; }
     .text-wrapper-2, .text-wrapper-3, .navbar a { font-size: 10px; }
-    .carousel-visuals-wrapper { height: 180px; margin-top: 12vh; }
-    .planet-slide { margin: 0 10px; }
-    .nav-button img { width: 28px; height: 28px; }
-    .icon_mini { width: 24px; height: 24px; }
-    .data-label { font-size: 0.75em; }
-    .data-value { font-size: 0.85em; }
-    .botao_download { width: 50px; height: 50px; bottom: 75px; right: 15px; }
+    .carousel-visuals-wrapper { height: 200px; margin-top: 80px; }
+    .planet-slide { margin: 0 12px; }
+    .nav-button img { width: 26px; height: 26px; }
+    .icon_mini { width: 22px; height: 22px; }
+    .data-label { font-size: 0.65em; }
+    .data-value { font-size: 0.8em; }
+    .cards-container { width: 95%; }
 }
