@@ -56,7 +56,7 @@ def homepage():
             # Da pra aumentar o limite se quiser mostrar mais de um card por categoria, talvez seja bom fazer isso depois
             if len(dashboard[categoria]) < 4:
                 dashboard[categoria].append(planeta)
-
+        
     return flask.render_template("homepage.html", dashboard=dashboard)
 
 
