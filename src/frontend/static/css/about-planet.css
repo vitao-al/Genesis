@@ -64,10 +64,11 @@ body {
 /* ── GRID PRINCIPAL ── */
 .conteudo_content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 70px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
-        "planeta sobre"
+        "planeta planeta"
+        "sobre sobre"
         "input-ia input-ia";
     width: 90%;
     max-width: 1200px;
@@ -340,14 +341,27 @@ body {
     .link-menu { font-size: 14px; letter-spacing: 0.5px; }
 
     .conteudo_content {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        width: 95%;
-        padding: 20px;
-        margin-top: 10px;
-        gap: 25px;
-        border-radius: 20px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "planeta planeta"
+            "sobre sobre"
+            "input-ia input-ia";
+        /* max-width: 1200px; */
+        height: 75vh;
+        margin-top: 20px;
+        padding: 50px;
+        margin-bottom: 20px;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 30px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
     }
 
     .planet {
@@ -390,7 +404,7 @@ body {
 
     .sobre > h1.label_planet { font-size: 2em; margin-bottom: 10px; }
     .label_planet, .sobre h2 { font-size: 1.1em; margin-top: 12px; }
-    .sobre p, .p-ia { font-size: 14px; line-height: 1.6; }
+    .sobre p, .p-ia { font-size: 30px; line-height: 1.6; }
 
     .btn-enviar { width: 40px; height: 40px; }
     .btn-enviar img { width: 22px; height: 22px; }
@@ -400,11 +414,33 @@ body {
 @media screen and (max-width: 480px) {
     .navbar_content { gap: 10px; padding-top: 55px; }
     .link-menu { font-size: 12px; }
-    .conteudo_content { padding: 15px; gap: 15px; }
+    .conteudo_content { 
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "planeta planeta"
+            "sobre sobre"
+            "input-ia input-ia";
+        /* max-width: 1200px; */
+        height: 75vh;
+        margin-top: 20px;
+        padding: 50px;
+        margin-bottom: 20px;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 30px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
     .planet img { max-width: 160px; }
     .sobre > h1.label_planet { font-size: 1.6em; }
     .label_planet, .sobre h2 { font-size: 1em; }
-    .sobre p, .p-ia { font-size: 13px; }
-    .input-chat-ia input { font-size: 14px; padding: 8px 12px; }
-    .ia-message, .user-message { font-size: 13px; }
+    .sobre p, .p-ia { font-size: 30px; }
+    .input-chat-ia input { font-size: 30px; padding: 8px 12px; }
+    .ia-message, .user-message { font-size: 30px; }
 }
