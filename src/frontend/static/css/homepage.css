@@ -56,6 +56,7 @@ body, html {
 }
 
 .navbar a {
+    margin-inline: auto;
     color: white;
     font-size: 32px;
     font-weight: 700;
@@ -257,7 +258,7 @@ body, html {
 
 /* Tablet (max 1024px) */
 @media screen and (max-width: 1024px) {
-    .navbar { gap: 30px; }
+    .navbar { gap: 30px; height: 8%;}
     .navbar a { font-size: 22px; }
     .hero-world { max-width: 50%; }
     .genesis-logo { width: 220px; height: 100px; }
@@ -266,34 +267,41 @@ body, html {
 
 /* Mobile grande (max 768px) */
 @media screen and (max-width: 768px) {
-    .hero-container { height: auto; min-height: 100vh; }
     .hero-world { display: none; }
 
     .navbar {
-        position: absolute;
+        display: flex;
+        align-items: center;
+        /* position: absolute; */
         top: 0;
         left: 0;
         right: 0;
+        height: 8%;
         width: 100%;
         justify-content: center;
-        gap: 20px;
-        padding: 15px 5%;
-        background: rgba(0,0,0,0.6);
+        /* gap: 20px; */
+        /* padding: 15px 5%; */
+        background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(8px);
         flex-wrap: wrap;
         box-sizing: border-box;
     }
 
+
     .navbar a { font-size: 16px; }
 
     .hero-content-wrapper {
-        position: relative;
-        left: 0;
-        width: 100%;
-        max-width: 100%;
-        padding: 120px 5% 60px;
-        box-sizing: border-box;
-        gap: 20px;
+        position: absolute;
+        top: 0;
+        left: 5%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        max-width: 600px;
+        gap: 30px;
     }
 
     .genesis-logo { width: 180px; height: 80px; }
@@ -313,7 +321,7 @@ body, html {
 
 /* Mobile pequeno (max 480px) */
 @media screen and (max-width: 480px) {
-    .navbar { gap: 12px; padding: 12px 4%; }
+    .navbar { gap: 12px; padding: 12px 4%; height: 8%; }
     .navbar a { font-size: 13px; }
 
     .hero-content-wrapper { padding: 100px 4% 50px; gap: 15px; }
