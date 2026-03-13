@@ -320,8 +320,40 @@ body, html {
 
 /* Mobile pequeno (max 480px) */
 @media screen and (max-width: 480px) {
-    .navbar { gap: 12px; padding: 12px 4%; height: 8%; }
-    .navbar a { font-size: 13px; }
+        .navbar {
+        display: flex;
+        align-items: center;
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 8%;
+        width: 100%;
+        justify-content: center;
+        /* gap: 20px; */
+        /* padding: 15px 5%; */
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px);
+        flex-wrap: wrap;
+        box-sizing: border-box;
+    }
+
+
+    .navbar a { font-size: 16px; }
+
+    .hero-content-wrapper {
+        position: absolute;
+        top: 0;
+        left: 5%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        max-width: 600px;
+        gap: 30px;
+    }
 
     .hero-content-wrapper { padding: 100px 4% 50px; gap: 15px; }
     .genesis-logo { width: 150px; height: 65px; }
