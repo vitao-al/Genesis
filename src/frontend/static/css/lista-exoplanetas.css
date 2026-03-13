@@ -367,19 +367,37 @@ body {
         z-index: 1000;
     }
 
-    .frame .header-nav {
+    .frame .navbar {
         gap: 0;
         width: 100%;
         justify-content: center;
     }
 
     .frame .div,
-    .frame .text-wrapper {
-        flex: 1;
-        text-align: center;
-        padding: 5px 2px;
-        letter-spacing: 0;
+    .frame .text-wrapper  {
+    margin-inline: auto;
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+    text-decoration: none;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
+
+    .text-wrapper a::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: white;
+    transition: width 0.3s;
+    }
+
+    .text-wrapper a:hover::before { width: 100%; }
 
     .frame .div { font-size: 11px; }
     .frame .text-wrapper { font-size: 11px; }

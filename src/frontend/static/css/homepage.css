@@ -147,7 +147,6 @@ body, html {
 /* ── DASHBOARD ── */
 .dashboard-section {
     position: relative;
-    min-height: 100vh;
     padding: 60px 5%;
     z-index: 1;
     overflow: hidden;
