@@ -64,10 +64,9 @@ class DataHandler:
         df_renomeado = df_filtrados.rename(columns=self.COLUMN_MAP)
         df_limpo = df_renomeado.fillna(0.0)
         self.planetas = []
-        for _, row in df_limpo.iterrows():
-            print(row.to_dict())
+        for record in df_limpo.to_dict(orient="records"):
             try:
-                planeta = Exoplaneta(**row.to_dict())
+                planeta = Exoplaneta(**record)
                 self.planetas.append(planeta)
             except Exception as e:
                 print(f"Erro ao processar a linha: {e}")

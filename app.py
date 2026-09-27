@@ -15,9 +15,6 @@ app = flask.Flask(__name__,
             template_folder=CAMINHO_TEMPLATES,
             static_folder=CAMINHO_STATIC)
 
-if __name__ == "__main__":
-    app.run(port=int(os.environ.get("PORT", 5000)))
-
 data_handler = DataHandler()
 try:
     data_handler.load_planets_from_csv(CSV_PATH)
@@ -33,7 +30,7 @@ def debug():
         "template_folder_exists": os.path.exists(app.template_folder),
         "files_in_template_folder": os.listdir(app.template_folder) if os.path.exists(app.template_folder) else "PASTA NÃO EXISTE",
         "cwd": os.getcwd(),
-        "listdir_root": os.listdir("/var/task")
+        "listdir_root": os.listdir("/var/task") if os.path.exists("/var/task") else []
     }
     return flask.jsonify(info)
 
@@ -93,13 +90,19 @@ DOWNLOAD_DIRECTORY = os.path.join(basedir, 'dataset')
 @app.route('/planetas/download/<filename>')
 def download_dataset(filename):
     try:
+        # No Vercel (serverless), respostas > 4.5 MB causam erro 413 (Payload Too Large).
+        # Redirecionamos para o GitHub raw para download direto sem sobrecarregar a função.
+        if os.environ.get("VERCEL"):
+            return flask.redirect(
+                f"https://raw.githubusercontent.com/vitao-al/Genesis/main/dataset/{filename}"
+            )
+
         return flask.send_from_directory(
             DOWNLOAD_DIRECTORY,
             filename,
             as_attachment=True
         )
     except FileNotFoundError:
-
         return "Arquivo não encontrado", 404
 
 
@@ -182,4 +185,8 @@ def comparar():
 def espaco():
     todos_planetas = data_handler.get_planets()
     return flask.render_template("lista-exoplanetas.html", lista_planetas=todos_planetas)
+
+
+if __name__ == "__main__":
+    app.run(port=int(os.environ.get("PORT", 5000)), debug=True)
 
