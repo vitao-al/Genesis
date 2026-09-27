@@ -77,8 +77,12 @@ class DataHandler:
         return self.planetas
 
     def get_planet_por_nome(self, nome_planeta):
+        if not nome_planeta:
+            return None
+        import urllib.parse
+        clean_nome = urllib.parse.unquote(str(nome_planeta)).strip().lower()
         for p in self.planetas:
-            if nome_planeta == p.nome_planeta:
+            if p.nome_planeta and p.nome_planeta.strip().lower() == clean_nome:
                 return p
         return None
                     

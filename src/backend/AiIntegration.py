@@ -11,7 +11,7 @@ class Ai:
         self.URL = "https://api.groq.com/openai/v1/chat/completions"
         self.headers = {"Authorization": f"Bearer {self.API_KEY}"}
         # Permite configurar o modelo por variável de ambiente se necessário
-        self.model = os.getenv("GENESIS_AI_MODEL", "llama-3.1-8b-instant")
+        self.model = os.getenv("GENESIS_AI_MODEL", "openai/gpt-oss-20b")
 
     def PerguntarChat(self, planeta):
         if not self.API_KEY:

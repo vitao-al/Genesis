@@ -136,32 +136,30 @@ def aboutmore(nome_planeta):
 # =========================================================================
 # 💡 NOVA ROTA DE API PARA O CHAT (Retorna JSON)
 # =========================================================================
-@app.route('/api/chat/<nome_planeta>', methods=['POST'])
+@app.route('/api/chat/<path:nome_planeta>', methods=['POST'])
+@app.route('/chat/<path:nome_planeta>', methods=['POST'])
 def chat_with_ia(nome_planeta):
     # 1. Obter a pergunta do corpo da requisição JSON
-    data = flask.request.get_json()
+    data = flask.request.get_json(silent=True) or {}
     pergunta_usuario = data.get('pergunta', '').strip()
 
     if not pergunta_usuario:
-        # Se a requisição veio vazia, retorna um erro
         return flask.jsonify({"error": "Nenhuma pergunta fornecida."}), 400
 
     # 2. Obter o planeta para fornecer contexto à IA
-    planeta_changed = data_handler.get_planet_por_nome(nome_planeta)
-    if not planeta_changed:
-        return flask.jsonify({"error": "Planeta não encontrado."}), 404
+    import urllib.parse
+    nome_decodificado = urllib.parse.unquote(str(nome_planeta)).strip()
+    planeta_changed = data_handler.get_planet_por_nome(nome_decodificado)
 
-    # 3. Chamar a função da IA (Assumindo que Ai.PerguntarSobrePlaneta está disponível)
+    # Se estiver no dataset usa o nome formatado, senão usa o nome decodificado da URL
+    nome_final = planeta_changed.nome_planeta if planeta_changed else nome_decodificado
+
+    # 3. Chamar a função da IA
     try:
-        ia = Ai()  # Instanciar a classe de IA
-
-        # Chamada real à IA
-        resposta_ia = ia.PerguntarSobrePlaneta(planeta_changed.nome_planeta, pergunta_usuario)
-
-        # 4. Retorna a resposta da IA em formato JSON
+        ia = Ai()
+        resposta_ia = ia.PerguntarSobrePlaneta(nome_final, pergunta_usuario)
         return flask.jsonify({"resposta": resposta_ia})
     except Exception as e:
-        # Tratar falhas da IA
         print(f"Erro ao processar a pergunta da IA: {e}")
         return flask.jsonify({"error": "Erro interno ao processar a requisição da IA."}), 500
 
