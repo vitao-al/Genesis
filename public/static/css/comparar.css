@@ -1,0 +1,351 @@
+body {
+    background-image: url("/static/img/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "Poppins", Helvetica, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+main {
+    padding-top: 140px;
+    padding-bottom: 50px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+/* ── LOGO ── */
+.genesis-logo {
+    position: absolute;
+    top: 40px;
+    left: 5%;
+    width: 180px;
+    height: 78px;
+    background-image: url(https://c.animaapp.com/aPetIHpm/img/genesislogo--2--1@2x.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+
+.genesis-logo a { display: block; width: 100%; height: 100%; }
+.genesis-logo:hover { transform: translateY(-3px); }
+
+/* ── NAVBAR ── */
+.navbar {
+    position: absolute;
+    top: 40px;
+    right: 5%;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    z-index: 100;
+}
+
+.text-wrapper-2 {
+    font-family: "Poppins", Helvetica, sans-serif;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.text-wrapper-2::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.text-wrapper-2:hover::before { width: 100%; }
+.text-wrapper-2:hover { text-shadow: 0 0 10px rgba(255,255,255,0.4); }
+
+/* ── COMPARAÇÃO ── */
+.comparacao-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.glass-panel {
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.5);
+}
+
+.glass-panel h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    color: #00c3ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-left: 4px solid #00c3ff;
+    padding-left: 15px;
+}
+
+/* ── GRÁFICO ── */
+.chart-wrapper {
+    position: relative;
+    height: 450px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ── TABELA ── */
+.table-responsive { overflow-x: auto; }
+
+.tabela-comparativa {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: center;
+    min-width: 500px;
+}
+
+.tabela-comparativa th,
+.tabela-comparativa td {
+    padding: 16px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.coluna-atributo {
+    text-align: left;
+    font-weight: 600;
+    color: #a0a0a0;
+    width: 20%;
+    font-size: 1rem;
+}
+
+.header-planeta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.img-wrapper {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+}
+
+.header-planeta img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+    transition: transform 0.3s ease;
+}
+
+.header-planeta img:hover { transform: scale(1.1) rotate(5deg); }
+
+.nome-planeta { font-size: 1.1rem; font-weight: 700; margin-top: 5px; }
+
+.badge-categoria {
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+}
+
+.badge-categoria.semelhante-a-terra {
+    background-color: rgba(46,204,113,0.2);
+    color: #2ecc71;
+    border-color: #2ecc71;
+}
+
+.badge-categoria.promissor {
+    background-color: rgba(52,152,219,0.2);
+    color: #3498db;
+    border-color: #3498db;
+}
+
+.badge-categoria.possivel {
+    background-color: rgba(241,196,15,0.2);
+    color: #f1c40f;
+    border-color: #f1c40f;
+}
+
+.badge-categoria.hostil,
+.badge-categoria.improvavel {
+    background-color: rgba(231,76,60,0.2);
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.linha-destaque { background: rgba(255,255,255,0.05); }
+
+.linha-destaque td:first-child {
+    border-left: 4px solid #00c3ff;
+    color: white;
+}
+
+.valor-esi {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #00c3ff;
+    text-shadow: 0 0 10px rgba(0,195,255,0.4);
+}
+
+/* ── ESTADO VAZIO ── */
+.empty-state {
+    text-align: center;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.empty-state p { font-size: 1.2rem; color: #ccc; }
+
+.btn-action {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(45deg, #00c3ff, #007bff);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0,195,255,0.3);
+}
+
+.btn-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,195,255,0.5);
+}
+
+/* ════════════════════════════════
+   BREAKPOINTS RESPONSIVOS
+   ════════════════════════════════ */
+
+/* Tablet (max 1024px) */
+@media screen and (max-width: 1024px) {
+    .navbar { gap: 25px; }
+    .text-wrapper-2 { font-size: 15px; }
+    .genesis-logo { width: 150px; height: 65px; }
+    .chart-wrapper { height: 380px; }
+    .coluna-atributo { font-size: 0.9rem; }
+}
+
+/* Mobile (max 768px) */
+@media screen and (max-width: 768px) {
+    main { padding-top: 120px; width: 95%; }
+
+    .genesis-logo {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 15px;
+        width: 130px;
+        height: 56px;
+    }
+
+    .navbar {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        width: 100%;
+        justify-content: center;
+        gap: 0;
+        padding: 10px 0;
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        z-index: 1000;
+    }
+
+    .text-wrapper-2 {
+        font-size: 11px;
+        flex: 1;
+        text-align: center;
+        padding: 5px 2px;
+        letter-spacing: 0;
+    }
+
+    .page-title { font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 25px; }
+
+    .glass-panel { padding: 20px 15px; border-radius: 15px; }
+    .glass-panel h2 { font-size: 1.2rem; margin-bottom: 15px; }
+
+    .chart-wrapper { height: 280px; }
+
+    .tabela-comparativa th,
+    .tabela-comparativa td { padding: 12px 8px; }
+
+    .coluna-atributo { font-size: 0.8rem; width: 25%; }
+    .nome-planeta { font-size: 0.9rem; }
+
+    .img-wrapper { width: 70px; height: 70px; }
+    .header-planeta img { width: 55px; height: 55px; }
+
+    .badge-categoria { font-size: 0.65rem; padding: 3px 8px; }
+    .valor-esi { font-size: 1.2rem; }
+
+    .empty-state { padding: 30px 20px; }
+    .empty-state p { font-size: 1rem; }
+
+    main { padding-bottom: 70px; }
+}
+
+/* Mobile pequeno (max 480px) */
+@media screen and (max-width: 480px) {
+    main { padding-top: 100px; }
+    .page-title { font-size: 1.3rem; }
+    .text-wrapper-2 { font-size: 10px; }
+
+    .glass-panel { padding: 15px 10px; }
+    .glass-panel h2 { font-size: 1rem; }
+
+    .chart-wrapper { height: 220px; }
+
+    .tabela-comparativa th,
+    .tabela-comparativa td { padding: 8px 5px; font-size: 0.8rem; }
+
+    .coluna-atributo { font-size: 0.75rem; }
+    .nome-planeta { font-size: 0.8rem; }
+    .img-wrapper { width: 55px; height: 55px; }
+    .header-planeta img { width: 45px; height: 45px; }
+    .valor-esi { font-size: 1rem; }
+}

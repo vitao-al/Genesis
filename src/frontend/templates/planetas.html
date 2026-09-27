@@ -33,7 +33,7 @@
                      {% for p in lista_planetas %}
                         <div class="planet-slide" data-index="{{ loop.index0 }}">
 
-                            <img class="planet" src="{{ url_for('static', filename='img/planets/' ~ p.nome_planeta ~ '.png') }}" alt="{{ p.nome_planeta }}">
+                            <img class="planet" src="{{ url_for('static', filename='img/planets/' ~ p.nome_planeta ~ '.png') }}" alt="{{ p.nome_planeta }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='img/planetaTerra.png') }}';">
 
                             <div class="painel-planet">
                                 <p class="label_planet">

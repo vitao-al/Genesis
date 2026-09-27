@@ -1,0 +1,371 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: "Poppins", Helvetica, sans-serif;
+}
+
+.landing-page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000000;
+}
+
+/* ── HERO ── */
+.hero-container {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    min-height: 500px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-world {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: auto;
+    max-width: 60%;
+    object-fit: cover;
+    z-index: 2;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+    position: absolute;
+    top: 40px;
+    right: 5%;
+    z-index: 20;
+    display: flex;
+    gap: 50px;
+}
+
+.navbar a {
+    margin-inline: auto;
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+    text-decoration: none;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.navbar a::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: white;
+    transition: width 0.3s;
+}
+
+.navbar a:hover::before { width: 100%; }
+
+/* ── HERO CONTENT ── */
+.hero-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    max-width: 600px;
+    gap: 30px;
+}
+
+.genesis-logo {
+    width: 300px;
+    height: 140px;
+    background-image: url('https://c.animaapp.com/aPetIHpm/img/genesislogo--2--1@2x.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+}
+
+.genesis-logo a { display: block; width: 100%; height: 100%; }
+
+.texto-de-efeito {
+    color: white;
+    position: relative;
+}
+
+#hero-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.div {
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.explore { display: inline-block; }
+
+.navegar {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 12px 35px;
+    border-radius: 30px;
+    background: rgba(0,0,0,0.4);
+    transition: all 0.3s;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    backdrop-filter: blur(5px);
+}
+
+.navegar:hover { background: white; color: black; border-color: white; }
+
+/* ── DASHBOARD ── */
+.dashboard-section {
+    position: relative;
+    padding: 60px 5%;
+    z-index: 1;
+    overflow: hidden;
+    background-color: black;
+}
+
+.mirror-background {
+    background-color: #000000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.dashboard-content-wrapper {
+    position: relative;
+    z-index: 5;
+}
+
+.dashboard-title {
+    font-family: "Poppins", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 50px;
+    text-shadow: 0 4px 10px rgba(0,0,0,1);
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.planet-card {
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 25px;
+    width: 280px;
+    color: white;
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+}
+
+.planet-card:hover {
+    transform: translateY(-10px);
+    background: rgba(30, 30, 30, 0.9);
+    border-color: #4a90e2;
+}
+
+.card-name { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+.card-score { font-size: 40px; font-weight: 700; margin-bottom: 15px; }
+.score-high { color: #4ade80; text-shadow: 0 0 15px rgba(74, 222, 128, 0.4); }
+.score-med { color: #facc15; }
+.score-low { color: #f87171; }
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #ddd;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 10px;
+}
+
+/* ── FOOTER ── */
+.site-footer {
+    position: relative;
+    z-index: 10;
+    background-color: #000000;
+    border-top: 1px solid #222;
+    padding: 40px 5%;
+    text-align: center;
+    color: #888;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover { color: #4a90e2; }
+
+/* ════════════════════════════════
+   BREAKPOINTS RESPONSIVOS
+   ════════════════════════════════ */
+
+/* Tablet (max 1024px) */
+@media screen and (max-width: 1024px) {
+    .navbar { gap: 30px; height: 8%;}
+    .navbar a { font-size: 22px; }
+    .hero-world { max-width: 50%; }
+    .genesis-logo { width: 220px; height: 100px; }
+    .planet-card { width: 240px; }
+}
+
+/* Mobile grande (max 768px) */
+@media screen and (max-width: 768px) {
+    .hero-world { display: none; }
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 8%;
+        width: 100%;
+        justify-content: center;
+        /* gap: 20px; */
+        /* padding: 15px 5%; */
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px);
+        flex-wrap: wrap;
+        box-sizing: border-box;
+    }
+
+
+    .navbar a { font-size: 16px; }
+
+    .hero-content-wrapper {
+        position: absolute;
+        top: 0;
+        left: 5%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        max-width: 600px;
+        gap: 30px;
+    }
+
+    .genesis-logo { width: 180px; height: 80px; }
+
+    #hero-title { font-size: clamp(2rem, 8vw, 3rem); }
+
+    .div { font-size: clamp(0.9rem, 3.5vw, 1.1rem); }
+
+    .navegar { font-size: 16px; padding: 10px 25px; }
+
+    .dashboard-section { padding: 40px 4%; }
+    .dashboard-title { font-size: 26px; margin-bottom: 30px; }
+
+    .cards-container { gap: 20px; }
+    .planet-card { width: 100%; max-width: 340px; }
+}
+
+/* Mobile pequeno (max 480px) */
+@media screen and (max-width: 480px) {
+        .navbar {
+        display: flex;
+        align-items: center;
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 8%;
+        width: 100%;
+        justify-content: center;
+        /* gap: 20px; */
+        /* padding: 15px 5%; */
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px);
+        flex-wrap: wrap;
+        box-sizing: border-box;
+    }
+
+
+    .navbar a { font-size: 16px; }
+
+    .hero-content-wrapper {
+        position: absolute;
+        top: 0;
+        left: 5%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        max-width: 600px;
+        gap: 30px;
+    }
+
+    .hero-content-wrapper { padding: 100px 4% 50px; gap: 15px; }
+    .genesis-logo { width: 150px; height: 65px; }
+
+    #hero-title { font-size: clamp(1.8rem, 9vw, 2.5rem); }
+
+    .navegar { font-size: 14px; padding: 10px 20px; }
+
+    .dashboard-title { font-size: 22px; }
+    .planet-card { width: 100%; padding: 20px; }
+    .card-name { font-size: 20px; }
+    .card-score { font-size: 32px; }
+
+    .footer-links { gap: 15px; }
+}   

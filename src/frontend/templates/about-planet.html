@@ -21,7 +21,7 @@
         </div>
         <div class="conteudo_content">
              <div class="planet">
-                <img src="{{ url_for('static', filename='img/planets/' ~ planeta_changed.nome_planeta ~ '.png') }}" alt="{{ planeta_changed.nome_planeta }}">
+                <img src="{{ url_for('static', filename='img/planets/' ~ planeta_changed.nome_planeta ~ '.png') }}" alt="{{ planeta_changed.nome_planeta }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='img/planetaTerra.png') }}';">
             </div>
 
             <div class="sobre" id="sobre-conteudo" style="display: {{ 'none' if chat_messages else 'block' }}">

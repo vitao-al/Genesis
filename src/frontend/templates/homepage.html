@@ -51,18 +51,19 @@
                         {% set p = lista_planetas[0] %}
 
                         <div class="planet-card">
-                            <a class="planet" src="{{ url_for('static', filename='img/planets/' ~ p.nome_planeta ~ '.png') }}" alt="{{ p.nome_planeta }}">
-                            <div style="font-size: 12px; text-transform: uppercase; color: #aaa; margin-bottom: 5px;">{{ categoria }}</div>
-                            <div class="card-name">{{ p.nome_planeta }}</div>
+                            <a href="{{ url_for('aboutmore', nome_planeta=p.nome_planeta) }}" style="text-decoration: none; color: inherit; display: block;">
+                                <img class="planet" src="{{ url_for('static', filename='img/planets/' ~ p.nome_planeta ~ '.png') }}" alt="{{ p.nome_planeta }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='img/planetaTerra.png') }}';" style="width: 100px; height: 100px; object-fit: contain; margin: 0 auto 15px auto; display: block;">
+                                <div style="font-size: 12px; text-transform: uppercase; color: #aaa; margin-bottom: 5px;">{{ categoria }}</div>
+                                <div class="card-name">{{ p.nome_planeta }}</div>
 
-                            <div class="card-score {% if p.calcular_provabilidade_vida() > 0.7 %}score-high{% elif p.calcular_provabilidade_vida() > 0.4 %}score-med{% else %}score-low{% endif %}">
-                                {{ "%.2f"|format(p.calcular_provabilidade_vida()) }}
-                            </div>
+                                <div class="card-score {% if p.calcular_provabilidade_vida() > 0.7 %}score-high{% elif p.calcular_provabilidade_vida() > 0.4 %}score-med{% else %}score-low{% endif %}">
+                                    {{ "%.2f"|format(p.calcular_provabilidade_vida()) }}
+                                </div>
 
-                            <div class="card-details">
-                                <span>Raio: {{ p.raio_planeta }} R⊕</span>
-                                <span>Ano: {{ p.ano_descoberta }}</span>
-                            </div>
+                                <div class="card-details">
+                                    <span>Raio: {{ p.raio_planeta }} R⊕</span>
+                                    <span>Ano: {{ p.ano_descoberta }}</span>
+                                </div>
                             </a>
                         </div>
                     {% endif %}

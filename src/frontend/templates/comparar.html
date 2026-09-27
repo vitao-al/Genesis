@@ -50,7 +50,7 @@
                                         <div class="img-wrapper">
                                             <img src="{{ url_for('static', filename='img/planets/' ~ p.nome_planeta ~ '.png') }}"
                                                  alt="{{ p.nome_planeta }}"
-                                                 onerror="this.src='{{ url_for('static', filename='img/planetaTerra.png') }}'">
+                                                 onerror="this.onerror=null; this.src='{{ url_for('static', filename='img/planetaTerra.png') }}';">
                                         </div>
                                         <span class="nome-planeta">{{ p.nome_planeta }}</span>
                                         <span class="badge-categoria {{ p.categoria_habitabilidade()|lower|replace(' ', '-')|replace('á', 'a') }}">

@@ -8,7 +8,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 # Caminhos absolutos corretos
 CAMINHO_TEMPLATES = os.path.join(basedir, 'src', 'frontend', 'templates')
-CAMINHO_STATIC    = os.path.join(basedir, 'src', 'frontend', 'static')
+if os.path.exists(os.path.join(basedir, 'public', 'static')):
+    CAMINHO_STATIC = os.path.join(basedir, 'public', 'static')
+else:
+    CAMINHO_STATIC = os.path.join(basedir, 'src', 'frontend', 'static')
 CSV_PATH          = os.path.join(basedir, 'dataset', 'PS_2025.02.03_05.09.36.csv')
 
 app = flask.Flask(__name__,
